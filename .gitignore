@@ -9,6 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
+data/
+
 .idea/
 .python-version
 uv.lock

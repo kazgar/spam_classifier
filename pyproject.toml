@@ -14,5 +14,6 @@ dependencies = [
     "pathlib>=1.0.1",
     "polars>=1.32.0",
     "scikit-learn>=1.7.1",
+    "tqdm>=4.67.1",
     "urlextract>=1.9.0",
 ]

@@ -8,7 +8,7 @@ and Tensorflow</i> book by Geron Aurelien.
 
 ______________________________________________________________________
 
-The dataset contains multiple files,
+The dataset contains multiple files:
 
 - `ham_easy_<i>` and `ham_hard_<i>`: containing 'normal' emails
 - `spam_<i>`: (you guessed it) containing examples of spam emails.
@@ -21,7 +21,7 @@ ______________________________________________________________________
 ### Approach
 
 The biggest challenge in this problem is (surprise, surprise) - how to parse and encode emails such that those encodings
-can encapsulate features that distinguish spam emails from regular ones. I chose rather simple approach, namely <b>Bag of Words (BoW)</b>, the count-based version).
+can encapsulate features that distinguish spam emails from regular ones. I chose rather simple approach, namely <b>Bag of Words (BoW)</b>, the count-based version.
 
 In short:
 

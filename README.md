@@ -1,7 +1,5 @@
 # SPAM Classifier
 
-______________________________________________________________________
-
 This repository is my take on the spam classification problem. Data used in this project is
 from https://spamassassin.apache.org/. Working on this is part of my journey through <i>Hands-On Machine Learning with Scikit-Learn
 and Tensorflow</i> book by Geron Aurelien.

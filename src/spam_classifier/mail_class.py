@@ -1,4 +1,8 @@
+import re
+
 from bs4 import BeautifulSoup
+from nltk.stem.snowball import SnowballStemmer
+from urlextract import URLExtract
 
 
 class Mail:
@@ -10,20 +14,28 @@ class Mail:
         match self.type:
             case "text/html":
                 soup = BeautifulSoup(self.body, "html.parser")
-                text = soup.get_text()
+                body = soup.get_text()
                 for link in soup.find_all("a"):
-                    text += f' {link.get("href")}'
+                    body += f' {link.get("href")}'
 
             case _:
-                text = self.body
+                body = self.body
 
-        print(text)
+        body = re.sub(r"(\s*\n)+", " ", body, flags=re.M | re.S)
 
+        extractor = URLExtract()
+        urls = extractor.find_urls(body)
+        for url in urls:
+            body = body.replace(url, "URL ")
 
-class MailBox:
-    def __init__(self):
-        self.mailbox: list[Mail] = []
-        self.vocab: set[str] = set()
+        body = re.sub(r"\b[\w.-]+@[\w.-]+\.\w+\b", "EMAIL ", body, flags=re.M | re.S)
+        body = re.sub(r"[^\w\s]|_", "", body, flags=re.M | re.S)
+        body = body.lower().split()
 
-    def add_mail(self, mail: Mail):
-        self.mailbox.append(mail)
+        stemmer = SnowballStemmer("english")
+        word_dict = {}
+        for word in body:
+            word = stemmer.stem(word)
+            word_dict[word] = word_dict.get(word, 0) + 1
+
+        return word_dict
